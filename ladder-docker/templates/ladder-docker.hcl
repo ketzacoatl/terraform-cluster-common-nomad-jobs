@@ -20,6 +20,10 @@ job "${job_name}" {
         ]
 
         work_dir = "/etc/ladder"
+
+        port_map = {
+          http = 9094
+        }
       }
 
       env {
