@@ -10,7 +10,7 @@ job "${job_name}" {
       driver = "docker"
       config {
         image   = "themotion/ladder:${image_tag}"
-        command = "/bin/ladder"
+        command = "/bin/ladder -p 9094:9094"
 
         network_mode = "host"
 
