@@ -49,9 +49,7 @@ job "${job_name}" {
         network {
           mbits = ${net_limit}
 
-          port "metrics" {
-            static = 9094
-          }
+          port "metrics" {}
         }
       }
 
