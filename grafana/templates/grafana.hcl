@@ -23,9 +23,7 @@ job "${job_name}" {
         memory = ${mem_limit}
         network {
           mbits = ${net_limit}
-          port "http" {
-            static = 3000
-          }
+          port "http" {}
         }
       }
 
