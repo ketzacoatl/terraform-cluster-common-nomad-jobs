@@ -11,6 +11,7 @@ data "template_file" "hashi-ui" {
     net_limit     = "${var.net_limit}"
     nomad_enable  = "${var.nomad_enable}"
     nomad_address = "${var.nomad_address}"
+    node_class    = "${var.node_class}"
   }
 }
 

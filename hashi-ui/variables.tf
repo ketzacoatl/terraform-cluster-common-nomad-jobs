@@ -14,6 +14,11 @@ variable "datacenters" {
   type        = "list"
 }
 
+variable "node_class" {
+  description = "nomad node class that should run this job"
+  type        = "string"
+}
+
 variable "run" {
   description = "boolean, to run or not to run"
   default     = "true"
