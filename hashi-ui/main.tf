@@ -1,6 +1,6 @@
 data "template_file" "hashi-ui" {
   count    = "${var.run}"
-  template = "${file("${path.module}/templates/hashi-ui.hcl")}"
+  template = "${file("${path.module}/templates/hashi-ui-${var.container_engine == "docker" ? "docker" : "rkt"}.hcl")}"
 
   vars {
     job_name      = "${var.job_name}"

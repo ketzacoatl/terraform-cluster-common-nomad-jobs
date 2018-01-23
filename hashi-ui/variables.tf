@@ -19,6 +19,11 @@ variable "run" {
   default     = "true"
 }
 
+variable "container_engine" {
+  description = "Container engine that will execute the job"
+  default     = "docker"
+}
+
 variable "cpu_limit" {
   description = "CPU resource limit"
   default     = "500"
