@@ -1,4 +1,4 @@
-job "hashi-ui" {
+job "${job_name}" {
   region      = "${region}"
   datacenters = ["${datacenters}"]
   type        = "service"
