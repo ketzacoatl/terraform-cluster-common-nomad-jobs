@@ -25,6 +25,7 @@ job "${job_name}" {
       service {
         name = "node-exporter"
         port = "metrics"
+        tags = [ "scrape-metrics" ]
 
         check {
           type     = "http"
