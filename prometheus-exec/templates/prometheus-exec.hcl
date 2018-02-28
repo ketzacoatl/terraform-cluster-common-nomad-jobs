@@ -78,7 +78,7 @@ scrape_configs:
         token: ${consul_token}
     relabel_configs:
       - source_labels: ['__meta_consul_tags']
-        regex: scrape-metrics
+        regex: .*,scrape-metrics,.*
         action: keep
     # - source_labels: [__meta_consul_node]
     #   target_label: instance
