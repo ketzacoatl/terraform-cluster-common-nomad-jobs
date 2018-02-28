@@ -13,6 +13,7 @@ data "template_file" "prometheus" {
     net_limit     = "${var.net_limit}"
     consul_server = "${var.consul_server}"
     consul_token  = "${var.consul_token}"
+    node_class    = "${var.node_class}"
   }
 }
 

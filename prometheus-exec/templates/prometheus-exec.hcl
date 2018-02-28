@@ -29,7 +29,7 @@ job "prometheus" {
       constraint {
         attribute = "$${node.class}"
         operator  = "="
-        value     = "manage"
+        value     = "${node_class}"
       }
 
       service {

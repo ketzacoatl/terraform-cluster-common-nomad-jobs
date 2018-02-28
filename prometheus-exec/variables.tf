@@ -3,6 +3,11 @@ variable "run" {
   default     = "true"
 }
 
+variable "node_class" {
+  description = "nomad node class that should run this job"
+  type        = "string"
+}
+
 variable "region" {
   description = "nomad region"
   type        = "string"
