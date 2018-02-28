@@ -45,6 +45,7 @@ variable "net_limit" {
 
 variable "consul_server" {
   description = "Address of Consul server"
+  default     = "consul.service.consul:8500"
 }
 
 variable "consul_token" {
