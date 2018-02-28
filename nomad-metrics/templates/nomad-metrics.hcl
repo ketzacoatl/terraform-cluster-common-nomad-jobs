@@ -10,6 +10,8 @@ job "nomad-metrics" {
       driver = "docker"
       config {
         image   = "nomon/nomad-exporter"
+        args    = ["nomad.server", "http://nomad-server.service.consul:4646"]
+        command = "nomad-exporter"
       }
 
       constraint {
@@ -40,6 +42,7 @@ job "nomad-metrics" {
           interval = "30s"
           timeout  = "5s"
         }
+
       }
     }
   }
