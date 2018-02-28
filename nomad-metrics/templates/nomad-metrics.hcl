@@ -32,6 +32,7 @@ job "nomad-metrics" {
       service {
         name = "nomad-exporter"
         port = "metrics"
+        tags = [ "scrape-metrics" ]
 
         check {
           type     = "http"
