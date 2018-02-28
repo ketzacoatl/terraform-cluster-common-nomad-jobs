@@ -1,4 +1,3 @@
-
 provider "nomad" {
   address = "${var.nomad_address}"
   region  = "${var.region}"
@@ -11,24 +10,7 @@ module "prometheus-exec" {
   datacenters   = "${var.datacenters}"
   consul_server = "${var.consul_server}"
   consul_token  = "${var.consul_token}"
-}
-
-module "fabio-manage" {
-  source      = "./fabio"
-  job_name    = "fabio-manage"
-  run         = "${var.fabio_manage["run"]}"
-  node_class  = "${var.fabio_manage["node_class"]}"
-  region      = "${var.region}"
-  datacenters = "${var.datacenters}"
-}
-
-module "fabio-compute" {
-  source      = "./fabio"
-  job_name    = "fabio-compute"
-  run         = "${var.fabio_compute["run"]}"
-  node_class  = "${var.fabio_compute["node_class"]}"
-  region      = "${var.region}"
-  datacenters = "${var.datacenters}"
+  node_class    = "${var.prometheus["node_class"]}"
 }
 
 module "grafana" {
@@ -47,11 +29,12 @@ module "hashi-ui" {
   nomad_address = "${var.nomad_address}"
 }
 
-module "ladder" {
-  source      = "./ladder-docker"
-  run         = "${var.ladder["run"]}"
+module "cadvisor" {
+  source      = "./cadvisor"
+  run         = "${var.cadvisor["run"]}"
   region      = "${var.region}"
   datacenters = "${var.datacenters}"
+  job_name    = "${var.cadvisor["job_name"]}"
 }
 
 module "node_exporter" {
@@ -60,6 +43,14 @@ module "node_exporter" {
   region      = "${var.region}"
   datacenters = "${var.datacenters}"
   job_name    = "${var.node_exporter["job_name"]}"
+}
+
+module "consul-metrics" {
+  source      = "./consul-metrics"
+  run         = "${var.consul-metrics["run"]}"
+  region      = "${var.region}"
+  datacenters = "${var.datacenters}"
+  node_class  = "${var.consul-metrics["node_class"]}"
 }
 
 module "nomad-metrics" {
@@ -99,27 +90,6 @@ variable "prometheus" {
   type        = "map"
 
   default = {
-    run = true
-  }
-}
-
-# Fabio
-# Unfortunately due to how Terraform handles nested maps, this is needed
-variable "fabio_manage" {
-  description = "parameters for fabio-manage module"
-  type        = "map"
-
-  default = {
-    run        = true
-    node_class = "manage"
-  }
-}
-
-variable "fabio_compute" {
-  description = "parameters for fabio-compute module"
-  type        = "map"
-
-  default = {
     run        = true
     node_class = "compute"
   }
@@ -131,21 +101,12 @@ variable "grafana" {
 
   default = {
     run        = true
-    node_class = "manage"
+    node_class = "compute"
   }
 }
 
 variable "hashi-ui" {
   description = "parameters for hashi-ui module"
-  type        = "map"
-
-  default = {
-    run = true
-  }
-}
-
-variable "ladder" {
-  description = "parameters for ladder module"
   type        = "map"
 
   default = {
@@ -163,8 +124,18 @@ variable "node_exporter" {
   }
 }
 
-variable "nomad-metrics" {
-  description = "parameters for nomad-metrics module"
+variable "cadvisor" {
+  description = "parameters for cadvisor module"
+  type        = "map"
+
+  default = {
+    run      = true
+    job_name = "cadvisor"
+  }
+}
+
+variable "consul-metrics" {
+  description = "parameters for consul-metrics module"
   type        = "map"
 
   default = {
@@ -173,11 +144,12 @@ variable "nomad-metrics" {
   }
 }
 
-variable "sysbench" {
-  description = "parameters for sysbench module"
+variable "nomad-metrics" {
+  description = "parameters for nomad-metrics module"
   type        = "map"
 
   default = {
-    run = true
+    run        = true
+    node_class = "manage"
   }
 }
