@@ -11,6 +11,8 @@ module "prometheus-exec" {
   consul_server = "${var.consul_server}"
   consul_token  = "${var.consul_token}"
   node_class    = "${var.prometheus["node_class"]}"
+  cpu_limit     = "${var.prometheus["cpu_limit"]}"
+  mem_limit     = "${var.prometheus["mem_limit"]}"
 }
 
 module "grafana" {
@@ -19,6 +21,8 @@ module "grafana" {
   region      = "${var.region}"
   datacenters = "${var.datacenters}"
   node_class  = "${var.grafana["node_class"]}"
+  cpu_limit   = "${var.grafana["cpu_limit"]}"
+  mem_limit   = "${var.grafana["mem_limit"]}"
 }
 
 module "hashi-ui" {
@@ -27,6 +31,8 @@ module "hashi-ui" {
   region        = "${var.region}"
   datacenters   = "${var.datacenters}"
   nomad_address = "${var.nomad_address}"
+  cpu_limit     = "${var.hashi-ui["cpu_limit"]}"
+  mem_limit     = "${var.hashi-ui["mem_limit"]}"
 }
 
 module "cadvisor" {
@@ -35,6 +41,8 @@ module "cadvisor" {
   region      = "${var.region}"
   datacenters = "${var.datacenters}"
   job_name    = "${var.cadvisor["job_name"]}"
+  cpu_limit   = "${var.cadvisor["cpu_limit"]}"
+  mem_limit   = "${var.cadvisor["mem_limit"]}"
 }
 
 module "node_exporter" {
@@ -43,6 +51,8 @@ module "node_exporter" {
   region      = "${var.region}"
   datacenters = "${var.datacenters}"
   job_name    = "${var.node_exporter["job_name"]}"
+  cpu_limit   = "${var.node_exporter["cpu_limit"]}"
+  mem_limit   = "${var.node_exporter["mem_limit"]}"
 }
 
 module "consul-metrics" {
@@ -51,6 +61,8 @@ module "consul-metrics" {
   region      = "${var.region}"
   datacenters = "${var.datacenters}"
   node_class  = "${var.consul-metrics["node_class"]}"
+  cpu_limit   = "${var.consul-metrics["cpu_limit"]}"
+  mem_limit   = "${var.consul-metrics["mem_limit"]}"
 }
 
 module "nomad-metrics" {
@@ -59,6 +71,8 @@ module "nomad-metrics" {
   region      = "${var.region}"
   datacenters = "${var.datacenters}"
   node_class  = "${var.nomad-metrics["node_class"]}"
+  cpu_limit   = "${var.nomad-metrics["cpu_limit"]}"
+  mem_limit   = "${var.nomad-metrics["mem_limit"]}"
 }
 
 variable "nomad_address" {
@@ -92,6 +106,8 @@ variable "prometheus" {
   default = {
     run        = true
     node_class = "compute"
+    cpu_limit  = "250"
+    mem_limit  = "256"
   }
 }
 
@@ -102,6 +118,8 @@ variable "grafana" {
   default = {
     run        = true
     node_class = "compute"
+    cpu_limit  = "100"
+    mem_limit  = "100"
   }
 }
 
@@ -111,6 +129,8 @@ variable "hashi-ui" {
 
   default = {
     run = true
+    cpu_limit = "100"
+    mem_limit = "100"
   }
 }
 
@@ -121,6 +141,8 @@ variable "node_exporter" {
   default = {
     run      = true
     job_name = "node_exporter"
+    cpu_limit = "100"
+    mem_limit = "100"
   }
 }
 
@@ -131,6 +153,8 @@ variable "cadvisor" {
   default = {
     run      = true
     job_name = "cadvisor"
+    cpu_limit = "100"
+    mem_limit = "100"
   }
 }
 
@@ -141,6 +165,8 @@ variable "consul-metrics" {
   default = {
     run        = true
     node_class = "manage"
+    cpu_limit  = "100"
+    mem_limit  = "100"
   }
 }
 
@@ -151,5 +177,7 @@ variable "nomad-metrics" {
   default = {
     run        = true
     node_class = "manage"
+    cpu_limit  = "100"
+    mem_limit  = "100"
   }
 }
