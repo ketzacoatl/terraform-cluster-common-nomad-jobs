@@ -16,5 +16,6 @@ data "template_file" "ladder-exec" {
 }
 
 resource "nomad_job" "ladder-exec" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.ladder-exec.rendered}"
 }

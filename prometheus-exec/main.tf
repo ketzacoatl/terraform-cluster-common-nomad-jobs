@@ -18,5 +18,6 @@ data "template_file" "prometheus" {
 }
 
 resource "nomad_job" "prometheus" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.prometheus.rendered}"
 }

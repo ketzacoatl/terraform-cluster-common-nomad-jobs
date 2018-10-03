@@ -14,5 +14,6 @@ data "template_file" "ladder-docker" {
 }
 
 resource "nomad_job" "ladder-docker" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.ladder-docker.rendered}"
 }

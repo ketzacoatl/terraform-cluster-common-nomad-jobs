@@ -15,5 +15,6 @@ data "template_file" "node_exporter" {
 }
 
 resource "nomad_job" "node_exporter" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.node_exporter.rendered}"
 }

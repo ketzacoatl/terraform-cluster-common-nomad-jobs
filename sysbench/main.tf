@@ -14,5 +14,6 @@ data "template_file" "sysbench" {
 }
 
 resource "nomad_job" "sysbench" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.sysbench.rendered}"
 }

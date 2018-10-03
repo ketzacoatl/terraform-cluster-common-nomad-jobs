@@ -15,5 +15,6 @@ data "template_file" "cadvisor" {
 }
 
 resource "nomad_job" "cadvisor" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.cadvisor.rendered}"
 }

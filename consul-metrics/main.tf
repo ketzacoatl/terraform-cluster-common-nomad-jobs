@@ -15,5 +15,6 @@ data "template_file" "consul-metrics" {
 }
 
 resource "nomad_job" "consul-metrics" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.consul-metrics.rendered}"
 }
