@@ -14,5 +14,6 @@ data "template_file" "grafana" {
 }
 
 resource "nomad_job" "grafana" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.grafana.rendered}"
 }

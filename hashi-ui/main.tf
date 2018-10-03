@@ -16,5 +16,6 @@ data "template_file" "hashi-ui" {
 }
 
 resource "nomad_job" "hashi-ui" {
+  count   = "${var.run}"
   jobspec = "${data.template_file.hashi-ui.rendered}"
 }
