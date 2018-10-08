@@ -106,9 +106,9 @@ variable "prometheus" {
 
   default = {
     run        = true
-    node_class = "compute"
-    cpu_limit  = "250"
-    mem_limit  = "256"
+    node_class = "manager"
+    cpu_limit  = "500"
+    mem_limit  = "512"
   }
 }
 
@@ -119,8 +119,8 @@ variable "grafana" {
   default = {
     run        = true
     node_class = "compute"
-    cpu_limit  = "100"
-    mem_limit  = "100"
+    cpu_limit  = "250"
+    mem_limit  = "64"
   }
 }
 
@@ -129,9 +129,10 @@ variable "hashi-ui" {
   type        = "map"
 
   default = {
-    run = true
+    run       = true
     cpu_limit = "100"
-    mem_limit = "100"
+    mem_limit = "128"
+
   }
 }
 
@@ -140,8 +141,8 @@ variable "node_exporter" {
   type        = "map"
 
   default = {
-    run      = true
-    job_name = "node_exporter"
+    run       = true
+    job_name  = "node_exporter"
     cpu_limit = "100"
     mem_limit = "100"
   }
@@ -152,10 +153,10 @@ variable "cadvisor" {
   type        = "map"
 
   default = {
-    run      = true
-    job_name = "cadvisor"
-    cpu_limit = "100"
-    mem_limit = "100"
+    run       = true
+    job_name  = "cadvisor"
+    cpu_limit = "250"
+    mem_limit = "256"
   }
 }
 
@@ -165,7 +166,7 @@ variable "consul-metrics" {
 
   default = {
     run        = true
-    node_class = "manage"
+    node_class = "compute"
     cpu_limit  = "100"
     mem_limit  = "100"
   }
@@ -177,7 +178,7 @@ variable "nomad-metrics" {
 
   default = {
     run        = true
-    node_class = "manage"
+    node_class = "compute"
     cpu_limit  = "100"
     mem_limit  = "100"
   }
