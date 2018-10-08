@@ -10,7 +10,7 @@ job "nomad-metrics" {
       driver = "docker"
       config {
         image   = "nomon/nomad-exporter"
-        args    = ["nomad.server", "http://nomad-server.service.consul:4646"]
+        args    = ["nomad.server", "${nomad_address}"]
         command = "nomad-exporter"
       }
 
