@@ -66,13 +66,14 @@ module "consul-metrics" {
 }
 
 module "nomad-metrics" {
-  source      = "./nomad-metrics"
-  run         = "${var.nomad-metrics["run"]}"
-  region      = "${var.region}"
-  datacenters = "${var.datacenters}"
-  node_class  = "${var.nomad-metrics["node_class"]}"
-  cpu_limit   = "${var.nomad-metrics["cpu_limit"]}"
-  mem_limit   = "${var.nomad-metrics["mem_limit"]}"
+  source        = "./nomad-metrics"
+  run           = "${var.nomad-metrics["run"]}"
+  region        = "${var.region}"
+  datacenters   = "${var.datacenters}"
+  node_class    = "${var.nomad-metrics["node_class"]}"
+  nomad_address = "${var.nomad-metrics["nomad_address"]}"
+  cpu_limit     = "${var.nomad-metrics["cpu_limit"]}"
+  mem_limit     = "${var.nomad-metrics["mem_limit"]}"
 }
 
 variable "nomad_address" {
