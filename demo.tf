@@ -30,7 +30,8 @@ module "hashi-ui" {
   run           = "${var.hashi-ui["run"]}"
   region        = "${var.region}"
   datacenters   = "${var.datacenters}"
-  nomad_address = "${var.nomad_address}"
+  nomad_address = "${var.hashi-ui["nomad_address"]}"
+  node_class    = "vagrant"
   cpu_limit     = "${var.hashi-ui["cpu_limit"]}"
   mem_limit     = "${var.hashi-ui["mem_limit"]}"
 }
@@ -133,6 +134,7 @@ variable "hashi-ui" {
     cpu_limit = "100"
     mem_limit = "128"
 
+    nomad_address = "http://nomad.service.consul:4646"
   }
 }
 
@@ -181,5 +183,7 @@ variable "nomad-metrics" {
     node_class = "compute"
     cpu_limit  = "100"
     mem_limit  = "100"
+
+    nomad_address = "http://nomad.service.consul:4646"
   }
 }
