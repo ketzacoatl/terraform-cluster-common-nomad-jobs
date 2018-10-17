@@ -22,6 +22,8 @@ job "${job_name}" {
         command = "local/fabio-${version}-linux_amd64"
 
         args = [
+          # Consul address for testing into a vagrant box
+          "-registry.consul.addr", "10.0.2.15:8500"
         ]
       }
 
