@@ -22,6 +22,7 @@ job "${job_name}" {
         command = "local/fabio-${version}-linux_amd64"
 
         args = [
+          "-registry.consul.addr", "${consul_address}"
         ]
       }
 

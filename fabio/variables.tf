@@ -47,3 +47,8 @@ variable "net_limit" {
   description = "Network resource limit"
   default     = "5"
 }
+
+variable "consul_address" {
+  description = "Consul IP Address"
+}
+
