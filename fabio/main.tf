@@ -12,6 +12,7 @@ data "template_file" "fabio" {
     cpu_limit   = "${var.cpu_limit}"
     mem_limit   = "${var.mem_limit}"
     net_limit   = "${var.net_limit}"
+    consul_address = "${consul_address}"
   }
 }
 
