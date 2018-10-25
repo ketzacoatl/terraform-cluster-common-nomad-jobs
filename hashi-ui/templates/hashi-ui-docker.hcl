@@ -28,6 +28,7 @@ job "${job_name}" {
       env {
         NOMAD_ENABLE = ${nomad_enable}
         NOMAD_ADDR   = "${nomad_address}"
+        LISTEN_ADDRESS = "0.0.0.0:${listen_port}"
       }
 
       constraint {
@@ -44,7 +45,7 @@ job "${job_name}" {
           mbits = ${net_limit}
 
           port "http" {
-            static = 3000
+            static = "${listen_port}"
           }
         }
       }
