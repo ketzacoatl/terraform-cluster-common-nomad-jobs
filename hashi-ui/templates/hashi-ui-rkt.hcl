@@ -12,7 +12,7 @@ job "hashi-ui" {
       config {
         image        = "jippi/hashi-ui"
         port_map {
-          http = "3000-tcp"
+          http = "${listen_port}-tcp"
         }
       }
 
@@ -30,6 +30,7 @@ job "hashi-ui" {
       env {
         NOMAD_ENABLE = ${nomad_enable}
         NOMAD_ADDR   = "${nomad_address}"
+        LISTEN_ADDRESS = "0.0.0.0:${listen_port}"
       }
 
       constraint {
@@ -46,7 +47,7 @@ job "hashi-ui" {
           mbits = ${net_limit}
 
           port "http" {
-            static = 3000
+            static = "${listen_port}"
           }
         }
       }

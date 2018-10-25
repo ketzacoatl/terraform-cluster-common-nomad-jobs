@@ -10,6 +10,7 @@ job "${job_name}" {
       driver = "docker"
       config {
         image   = "grafana/grafana"
+        network_mode = "host"
 
         port_map {
           http = 3000
@@ -27,7 +28,9 @@ job "${job_name}" {
         memory = ${mem_limit}
         network {
           mbits = ${net_limit}
-          port "http" {}
+          port "http" {
+            static = 3000
+          }
         }
       }
 
@@ -44,4 +47,3 @@ job "${job_name}" {
     }
   }
 }
-

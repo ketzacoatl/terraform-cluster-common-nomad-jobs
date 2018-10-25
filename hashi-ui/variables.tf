@@ -53,3 +53,8 @@ variable "nomad_address" {
   description = "Nomad address to use"
   default     = "http://http.nomad.service.consul:4646"
 }
+
+variable "listen_port" {
+  description = "Listening port for hashi-ui"
+  default = 5000
+}
