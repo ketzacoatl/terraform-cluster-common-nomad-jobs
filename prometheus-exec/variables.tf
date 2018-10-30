@@ -20,12 +20,12 @@ variable "datacenters" {
 
 variable "version" {
   description = "version of prometheus to download, verify, and run"
-  default     = "1.8.2"
+  default     = "2.4.3"
 }
 
 variable "checksum" {
   description = "version of prometheus to download, verify, and run"
-  default     = "sha512:f7577d48dcf5a8945b39c67edc59bf09c8420df6860206d06ef8fb43907a298ecc8f4a01bbbadc600b42bb2a8ac44622d30cfdc18e255d977c59515baf97b284"
+  default     = "sha512:2993c49b774f7be7246c669fbe4e82d2cbe348063091b2cdc827df540d00832147cf948f114278ea5d368d6dd03812cbed43888ed223f13a7846f0ef137389d5"
 }
 
 variable "cpu_limit" {

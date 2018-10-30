@@ -22,7 +22,7 @@ job "prometheus" {
         command = "prometheus-${version}.linux-amd64/prometheus"
 
         args = [
-          "-config.file=local/config.yaml"
+          "--config.file=local/config.yaml"
         ]
       }
 
