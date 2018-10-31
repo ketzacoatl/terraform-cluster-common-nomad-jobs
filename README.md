@@ -54,4 +54,11 @@ consul-metrics {
   cpu_limit  = "100"
   mem_limit  = "64"
 }
+
+statsd-metrics {
+  run        = true
+  node_class = "vagrant"
+  cpu_limit  = "100"
+  mem_limit  = "64"
+}
 ```
