@@ -11,7 +11,6 @@ job "consul-metrics" {
       config {
         image   = "prom/consul-exporter"
         args    = ["--consul.server", "${consul_server}"]
-        command = "/bin/consul_exporter"
         #dns_servers = ["172.17.0.1"]
         network_mode = "host"
       }
@@ -49,4 +48,3 @@ job "consul-metrics" {
     }
   }
 }
-

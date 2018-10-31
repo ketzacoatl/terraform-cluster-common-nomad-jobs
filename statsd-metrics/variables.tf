@@ -1,7 +1,7 @@
 variable "job_name" {
   description = "globally unique name for this job"
   type        = "string"
-  default     = "nomad-metrics"
+  default     = "statsd-metrics"
 }
 
 variable "region" {
@@ -12,6 +12,12 @@ variable "region" {
 variable "datacenters" {
   description = "nomad datacenters"
   type        = "list"
+}
+
+variable "consul_server" {
+  description = "host:port to consul server(s)"
+  type        = "string"
+  default     = "172.17.0.1:8500"
 }
 
 variable "node_class" {
@@ -33,12 +39,13 @@ variable "mem_limit" {
   description = "Memory resource limit"
   default     = "160"
 }
+
 variable "net_limit" {
   description = "Network resource limit"
   default     = "3"
 }
 
-variable "nomad_address" {
-  description = "URL to nomad server"
-  default     = "http://nomad.service.consul:4646"
+variable "statsd_mapping_config" {
+  description = "StatsD to Prometheus mapping configuration file path"
+  default = ""
 }

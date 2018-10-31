@@ -45,9 +45,17 @@ nomad-metrics = {
   node_class = "vagrant"
   cpu_limit  = "100"
   mem_limit  = "64"
+  nomad_address = "http://10.0.2.15:4646"
 }
 
 consul-metrics {
+  run        = true
+  node_class = "vagrant"
+  cpu_limit  = "100"
+  mem_limit  = "64"
+}
+
+statsd-metrics {
   run        = true
   node_class = "vagrant"
   cpu_limit  = "100"

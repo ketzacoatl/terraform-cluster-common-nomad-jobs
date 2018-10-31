@@ -60,6 +60,7 @@ module "consul-metrics" {
   source      = "./consul-metrics"
   run         = "${var.consul-metrics["run"]}"
   region      = "${var.region}"
+  consul_server = "${var.consul_server}"
   datacenters = "${var.datacenters}"
   node_class  = "${var.consul-metrics["node_class"]}"
   cpu_limit   = "${var.consul-metrics["cpu_limit"]}"
@@ -77,9 +78,19 @@ module "nomad-metrics" {
   mem_limit     = "${var.nomad-metrics["mem_limit"]}"
 }
 
+module "statsd-metrics" {
+  source      = "./statsd-metrics"
+  run         = "${var.statsd-metrics["run"]}"
+  region      = "${var.region}"
+  datacenters = "${var.datacenters}"
+  node_class  = "${var.statsd-metrics["node_class"]}"
+  cpu_limit   = "${var.statsd-metrics["cpu_limit"]}"
+  mem_limit   = "${var.statsd-metrics["mem_limit"]}"
+}
+
 variable "nomad_address" {
   description = "Address of Nomad"
-  default     = "http://nomad-server.service.consul:4646"
+  default     = "http://nomad.service.consul:4646"
 }
 
 variable "consul_server" {
@@ -185,5 +196,17 @@ variable "nomad-metrics" {
     mem_limit  = "100"
 
     nomad_address = "http://nomad.service.consul:4646"
+  }
+}
+
+variable "statsd-metrics" {
+  description = "parameters for statsd-metrics module"
+  type        = "map"
+
+  default = {
+    run        = true
+    node_class = "compute"
+    cpu_limit  = "100"
+    mem_limit  = "100"
   }
 }

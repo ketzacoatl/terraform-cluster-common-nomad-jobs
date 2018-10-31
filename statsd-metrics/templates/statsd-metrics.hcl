@@ -1,17 +1,18 @@
-job "nomad-metrics" {
+job "statsd-metrics" {
   region      = "${region}"
   datacenters = ["${datacenters}"]
   type        = "service"
 
-  group "nomad-exporter" {
+  group "statsd-exporter" {
     count  = 1
 
-    task "nomad-exporter" {
+    task "statsd-exporter" {
       driver = "docker"
       config {
-        image   = "nomon/nomad-exporter"
-        args    = ["nomad.server", "${nomad_address}"]
-        command = "nomad-exporter"
+        image   = "prom/statsd-exporter"
+        # args    = ["-statsd.mapping-config", "${statsd_mapping_config}"]
+        #dns_servers = ["172.17.0.1"]
+        network_mode = "host"
       }
 
       constraint {
@@ -26,14 +27,17 @@ job "nomad-metrics" {
         network {
           mbits = ${net_limit}
           port "metrics" {
-            static = 9172
+            static = 9125
+          }
+          port "http" {
+            static = 9102
           }
         }
       }
 
       service {
-        name = "nomad-exporter"
-        port = "metrics"
+        name = "statsd-exporter"
+        port = "http"
         tags = [ "scrape-metrics" ]
 
         check {
