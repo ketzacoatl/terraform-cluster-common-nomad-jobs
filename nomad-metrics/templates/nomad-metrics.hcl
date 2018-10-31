@@ -47,4 +47,3 @@ job "nomad-metrics" {
     }
   }
 }
-

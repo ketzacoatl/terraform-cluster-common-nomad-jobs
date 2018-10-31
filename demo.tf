@@ -60,6 +60,7 @@ module "consul-metrics" {
   source      = "./consul-metrics"
   run         = "${var.consul-metrics["run"]}"
   region      = "${var.region}"
+  consul_server = "${var.consul_server}"
   datacenters = "${var.datacenters}"
   node_class  = "${var.consul-metrics["node_class"]}"
   cpu_limit   = "${var.consul-metrics["cpu_limit"]}"
@@ -79,7 +80,7 @@ module "nomad-metrics" {
 
 variable "nomad_address" {
   description = "Address of Nomad"
-  default     = "http://nomad-server.service.consul:4646"
+  default     = "http://nomad.service.consul:4646"
 }
 
 variable "consul_server" {

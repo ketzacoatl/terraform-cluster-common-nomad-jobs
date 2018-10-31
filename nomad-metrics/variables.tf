@@ -40,5 +40,5 @@ variable "net_limit" {
 
 variable "nomad_address" {
   description = "URL to nomad server"
-  default     = "http://nomad-server.service.consul:4646"
+  default     = "http://nomad.service.consul:4646"
 }
