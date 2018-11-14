@@ -23,28 +23,37 @@ module "grafana" {
   node_class  = "${var.grafana["node_class"]}"
   cpu_limit   = "${var.grafana["cpu_limit"]}"
   mem_limit   = "${var.grafana["mem_limit"]}"
+  url = "${var.grafana["url"]}"
+  auth = "${var.grafana["auth"]}"
+  orgs = "${var.grafana_orgs}"
+  orgs_admins = "${var.grafana_orgs_admins}"
+  orgs_editors = "${var.grafana_orgs_editors}"
+  orgs_viewers = "${var.grafana_orgs_viewers}"
+  data_sources = "${var.grafana_data_sources}"
+  dashboards = "${var.grafana["dashboards"]}"
+  alerts = "${var.grafana["alerts"]}"
 }
 
-module "hashi-ui" {
-  source        = "./hashi-ui"
-  run           = "${var.hashi-ui["run"]}"
-  region        = "${var.region}"
-  datacenters   = "${var.datacenters}"
-  nomad_address = "${var.hashi-ui["nomad_address"]}"
-  node_class    = "vagrant"
-  cpu_limit     = "${var.hashi-ui["cpu_limit"]}"
-  mem_limit     = "${var.hashi-ui["mem_limit"]}"
-}
+# module "hashi-ui" {
+#   source        = "./hashi-ui"
+#   run           = "${var.hashi-ui["run"]}"
+#   region        = "${var.region}"
+#   datacenters   = "${var.datacenters}"
+#   nomad_address = "${var.hashi-ui["nomad_address"]}"
+#   node_class    = "vagrant"
+#   cpu_limit     = "${var.hashi-ui["cpu_limit"]}"
+#   mem_limit     = "${var.hashi-ui["mem_limit"]}"
+# }
 
-module "cadvisor" {
-  source      = "./cadvisor"
-  run         = "${var.cadvisor["run"]}"
-  region      = "${var.region}"
-  datacenters = "${var.datacenters}"
-  job_name    = "${var.cadvisor["job_name"]}"
-  cpu_limit   = "${var.cadvisor["cpu_limit"]}"
-  mem_limit   = "${var.cadvisor["mem_limit"]}"
-}
+# module "cadvisor" {
+#   source      = "./cadvisor"
+#   run         = "${var.cadvisor["run"]}"
+#   region      = "${var.region}"
+#   datacenters = "${var.datacenters}"
+#   job_name    = "${var.cadvisor["job_name"]}"
+#   cpu_limit   = "${var.cadvisor["cpu_limit"]}"
+#   mem_limit   = "${var.cadvisor["mem_limit"]}"
+# }
 
 module "node_exporter" {
   source      = "./node_exporter"
@@ -56,26 +65,26 @@ module "node_exporter" {
   mem_limit   = "${var.node_exporter["mem_limit"]}"
 }
 
-module "consul-metrics" {
-  source      = "./consul-metrics"
-  run         = "${var.consul-metrics["run"]}"
-  region      = "${var.region}"
-  datacenters = "${var.datacenters}"
-  node_class  = "${var.consul-metrics["node_class"]}"
-  cpu_limit   = "${var.consul-metrics["cpu_limit"]}"
-  mem_limit   = "${var.consul-metrics["mem_limit"]}"
-}
+# module "consul-metrics" {
+#   source      = "./consul-metrics"
+#   run         = "${var.consul-metrics["run"]}"
+#   region      = "${var.region}"
+#   datacenters = "${var.datacenters}"
+#   node_class  = "${var.consul-metrics["node_class"]}"
+#   cpu_limit   = "${var.consul-metrics["cpu_limit"]}"
+#   mem_limit   = "${var.consul-metrics["mem_limit"]}"
+# }
 
-module "nomad-metrics" {
-  source        = "./nomad-metrics"
-  run           = "${var.nomad-metrics["run"]}"
-  region        = "${var.region}"
-  datacenters   = "${var.datacenters}"
-  node_class    = "${var.nomad-metrics["node_class"]}"
-  nomad_address = "${var.nomad-metrics["nomad_address"]}"
-  cpu_limit     = "${var.nomad-metrics["cpu_limit"]}"
-  mem_limit     = "${var.nomad-metrics["mem_limit"]}"
-}
+# module "nomad-metrics" {
+#   source        = "./nomad-metrics"
+#   run           = "${var.nomad-metrics["run"]}"
+#   region        = "${var.region}"
+#   datacenters   = "${var.datacenters}"
+#   node_class    = "${var.nomad-metrics["node_class"]}"
+#   nomad_address = "${var.nomad-metrics["nomad_address"]}"
+#   cpu_limit     = "${var.nomad-metrics["cpu_limit"]}"
+#   mem_limit     = "${var.nomad-metrics["mem_limit"]}"
+# }
 
 variable "nomad_address" {
   description = "Address of Nomad"
