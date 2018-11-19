@@ -12,7 +12,7 @@ data "template_file" "hashi-ui" {
     nomad_enable  = "${var.nomad_enable}"
     nomad_address = "${var.nomad_address}"
     node_class    = "${var.node_class}"
-    listen_port = "${var.listen_port}"
+    listen_port   = "${var.listen_port}"
   }
 }
 

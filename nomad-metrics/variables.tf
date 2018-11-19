@@ -33,6 +33,7 @@ variable "mem_limit" {
   description = "Memory resource limit"
   default     = "160"
 }
+
 variable "net_limit" {
   description = "Network resource limit"
   default     = "3"

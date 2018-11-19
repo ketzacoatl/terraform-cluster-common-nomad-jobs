@@ -56,5 +56,5 @@ variable "nomad_address" {
 
 variable "listen_port" {
   description = "Listening port for hashi-ui"
-  default = 5000
+  default     = 5000
 }
