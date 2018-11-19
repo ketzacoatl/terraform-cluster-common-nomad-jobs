@@ -30,6 +30,27 @@ grafana = {
   node_class = "vagrant"
   cpu_limit  = "250"
   mem_limit  = "256"
+  url = "http://localhost:3000"
+  auth = "admin:admin"
+  data_source = false
+  data_source_type = "prometheus"
+  data_source_name = "prometheus-x"
+  data_source_url = "http://localhost:9090"
+  data_source_is_default = true
+  dashboard = false
+  alert = false
+  alert_name = "Email that team"
+  alert_type = "email"
+  alert_is_default = false
+  alert_settings_addresses = "foo@example.net;bar@example.net"
+  alert_settings_uploadImage = "false"
+  organization = false
+  organization_name = "Test Organization"
+  organization_admin_user = "admin"
+  organization_create_users = true
+  organization_admins = "admin@example.com"
+  organization_editors = "editor-01@example.com,editor-02@example.com"
+  organization_viewers = "viewer-01@example.com,viewer-02@example.com"
 }
 
 hashi-ui = {
