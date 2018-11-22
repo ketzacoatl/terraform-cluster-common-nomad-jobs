@@ -20,7 +20,7 @@ resource "nomad_job" "grafana" {
 
 provider "grafana" {
   url  = "${var.url}"
-  auth = "admin:admin"
+  auth = "${var.auth}"
 }
 
 resource "grafana_data_source" "prometheus-x" {
@@ -62,6 +62,7 @@ resource "grafana_dashboard" "node-exporter-stats" {
 }
 
 resource "grafana_alert_notification" "alerts" {
+  depends_on = ["nomad_job.grafana"]
   count      = "${var.alert["run"]}"
   name       = "${var.alert["name"]}"
   type       = "${var.alert["type"]}"
@@ -74,6 +75,7 @@ resource "grafana_alert_notification" "alerts" {
 }
 
 resource "grafana_organization" "org" {
+  depends_on   = ["nomad_job.grafana"]
   count        = "${var.organization["run"]}"
   name         = "${var.organization["name"]}"
   admin_user   = "${var.organization["admin_user"]}"
