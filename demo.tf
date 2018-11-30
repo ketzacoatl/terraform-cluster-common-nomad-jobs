@@ -23,6 +23,42 @@ module "grafana" {
   node_class  = "${var.grafana["node_class"]}"
   cpu_limit   = "${var.grafana["cpu_limit"]}"
   mem_limit   = "${var.grafana["mem_limit"]}"
+  url         = "${var.grafana["url"]}"
+  auth        = "${var.grafana["auth"]}"
+
+  data_source = {
+    run        = "${var.grafana["data_source"]}"
+    type       = "${var.grafana["data_source_type"]}"
+    name       = "${var.grafana["data_source_name"]}"
+    url        = "${var.grafana["data_source_url"]}"
+    is_default = "${var.grafana["data_source_is_default"]}"
+  }
+
+  dashboard = {
+    run = "${var.grafana["dashboard"]}"
+  }
+
+  alert = {
+    run        = "${var.grafana["alert"]}"
+    name       = "${var.grafana["alert_name"]}"
+    type       = "${var.grafana["alert_type"]}"
+    is_default = "${var.grafana["alert_is_default"]}"
+  }
+
+  alert_settings = {
+    addresses   = "${var.grafana["alert_settings_addresses"]}"
+    uploadImage = "${var.grafana["alert_settings_uploadImage"]}"
+  }
+
+  organization = {
+    run          = "${var.grafana["organization"]}"
+    name         = "${var.grafana["organization_name"]}"
+    admin_user   = "${var.grafana["organization_admin_user"]}"
+    create_users = "${var.grafana["organization_create_users"]}"
+    admins       = "${var.grafana["organization_admins"]}"
+    editors      = "${var.grafana["organization_editors"]}"
+    viewers      = "${var.grafana["organization_viewers"]}"
+  }
 }
 
 module "hashi-ui" {
@@ -118,10 +154,15 @@ variable "grafana" {
   type        = "map"
 
   default = {
-    run        = true
-    node_class = "compute"
-    cpu_limit  = "250"
-    mem_limit  = "64"
+    run          = true
+    node_class   = "compute"
+    cpu_limit    = "250"
+    mem_limit    = "64"
+    data_source  = false
+    dashboard    = false
+    organization = false
+    alert        = false
+    organization = false
   }
 }
 

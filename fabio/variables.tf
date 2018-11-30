@@ -51,4 +51,3 @@ variable "net_limit" {
 variable "consul_address" {
   description = "Consul IP Address"
 }
-
